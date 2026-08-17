@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body {
+    background-color: #060609;
+    color: #C4C4D0;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #0B0B11; }
+  ::-webkit-scrollbar-thumb { background: #26263a; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #E8001D; }
+  .scroll-hide::-webkit-scrollbar { display: none; }
+  .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  ::selection { background: rgba(232,0,29,0.3); color: #fff; }
+}
+
+@layer components {
+  .skeleton {
+    background: linear-gradient(90deg, #101018 25%, #1a1a26 50%, #101018 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite;
+  }
+  /* Buttons now include active-press feedback for tactile microinteraction */
+  .btn-primary {
+    @apply bg-brand-red text-white font-bold px-6 py-2.5 rounded-lg text-sm transition-all duration-200 ease-smooth;
+    @apply hover:bg-brand-redHover hover:shadow-glow-red active:scale-[0.97];
+  }
+  .btn-outline {
+    @apply border border-brand-border text-white font-medium px-5 py-2 rounded-lg text-sm transition-all duration-200 ease-smooth;
+    @apply hover:border-brand-muted hover:bg-brand-card active:scale-[0.97];
+  }
+  .btn-ghost {
+    @apply text-brand-subtle hover:text-white transition-colors duration-200 active:scale-[0.97];
+  }
+  .nav-link { @apply text-white hover:text-brand-red transition-colors duration-200 font-medium text-sm; }
+  .badge-new { @apply bg-brand-gold text-black text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider; }
+  .badge-premium { @apply bg-brand-red text-white text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide; }
+  .scroll-row { @apply flex gap-3 md:gap-4 overflow-x-auto scroll-hide pb-2; }
+
+  /* Cinematic gradient overlay used across cards and hero */
+  .cine-fade { background: linear-gradient(to top, rgba(6,6,9,0.95) 0%, rgba(6,6,9,0.5) 35%, transparent 70%); }
+  .cine-fade-r { background: linear-gradient(to right, rgba(6,6,9,0.96) 0%, rgba(6,6,9,0.6) 45%, transparent 100%); }
+
+  /* Reusable pill for meta info */
+  .meta-pill { @apply text-[10px] font-semibold text-brand-subtle; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  /* Staggered reveal helper — set --i on children */
+  .stagger > * { opacity: 0; animation: slideUpSm 0.5s cubic-bezier(0.16,1,0.3,1) forwards; animation-delay: calc(var(--i, 0) * 60ms); }
+}
